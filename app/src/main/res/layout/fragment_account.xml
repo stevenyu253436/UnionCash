@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountFragment">
+
+    <!-- 帳戶標題 -->
+    <TextView
+        android:id="@+id/tvAccountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="賬戶"
+        android:textSize="24sp"
+        android:textColor="#7F4A9E"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 用户信息 -->
+    <LinearLayout
+        android:id="@+id/userInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvUserInitial"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:layout_marginEnd="16dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUserPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="097****868"
+                android:textSize="18sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chewei Yu"
+                android:textSize="14sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+    <!-- 功能選項 -->
+    <LinearLayout
+        android:id="@+id/featureOptionsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnLogout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- 帳戶 & 安全 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="帳戶 &amp; 安全"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 身份認證 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="身份認證"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 賬戶管理 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="賬戶管理"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 地址簿 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="middle">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="地址簿"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 服務費用 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="middle">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="服務費用"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 邀請好友 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="邀請好友"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 語言設定 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="語言設定"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+            android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 幫助 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="幫助"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <!-- 關於Unioncash -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="關於Unioncash"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 登出按鈕 -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="登出"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#7F4A9E"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

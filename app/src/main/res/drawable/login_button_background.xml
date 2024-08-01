@@ -1,0 +1,15 @@
+<!-- 文件: res/drawable/login_button_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#7F4A9E"/> <!-- 按下时的颜色 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#C7B2FF"/> <!-- 默认颜色 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</selector>

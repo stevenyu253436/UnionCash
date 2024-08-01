@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="50dp"
+    android:height="50dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- 外圍圓圈 -->
+    <path
+        android:strokeColor="#C7B2FF"
+        android:strokeWidth="5"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M100,10
+                        A90,90 0 1,1 99.9,10"/>
+
+    <!-- 向下的箭頭 -->
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="10"
+        android:strokeLineCap="round"
+        android:pathData="M100,50
+                        L100,130"/>
+
+    <path
+        android:strokeColor="#000000"
+        android:strokeWidth="10"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M70,100
+                        L100,130
+                        L130,100"/>
+</vector>

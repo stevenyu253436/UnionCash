@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountSecurityActivity">
+
+    <!-- Back arrow and Title -->
+    <ImageView
+        android:id="@+id/ivArrowLeft"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_arrow_left"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvAccountSecurityTitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvAccountSecurityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="帳戶 &amp; 安全"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivArrowLeft"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 修改手機號碼 -->
+    <LinearLayout
+        android:id="@+id/phoneSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountSecurityTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_phone"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="修改手機號碼"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <!-- 變更信箱 -->
+    <LinearLayout
+        android:id="@+id/emailSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/phoneSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_email"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="變更信箱"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <!-- 登入密碼 -->
+    <LinearLayout
+        android:id="@+id/passwordSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/emailSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_password"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="登入密碼"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <!-- 支付密碼 -->
+    <LinearLayout
+        android:id="@+id/paymentSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/passwordSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_payment"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="支付密碼"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <!-- 面容/指纹登录 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/paymentSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_faceid"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="面容/指紋登錄"
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

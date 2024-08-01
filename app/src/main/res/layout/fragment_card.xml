@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentCard">
+
+    <!-- 標題 -->
+    <TextView
+        android:id="@+id/tvCardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="卡片"
+        android:textSize="24sp"
+        android:textColor="#7F4A9E"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 實體卡和虛擬卡選項 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCardTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="實體卡"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€49.90"
+                android:textSize="14sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="虛擬卡"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€5.00"
+                android:textSize="14sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 申請銀行卡按鈕 -->
+    <Button
+        android:id="@+id/btnApplyCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="申請銀行卡"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#7F4A9E"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 綁定銀行卡按鈕 -->
+    <Button
+        android:id="@+id/btnBindCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="綁定銀行卡"
+        android:textColor="#7F4A9E"
+        android:backgroundTint="#FFFFFF"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnApplyCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

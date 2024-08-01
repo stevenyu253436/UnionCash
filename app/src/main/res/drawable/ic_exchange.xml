@@ -1,0 +1,26 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 矢量圖形（外圍圓圈） -->
+    <item>
+        <vector
+            android:width="50dp"
+            android:height="50dp"
+            android:viewportWidth="200"
+            android:viewportHeight="200">
+            <path
+                android:strokeColor="#C7B2FF"
+                android:strokeWidth="5"
+                android:fillColor="@android:color/transparent"
+                android:pathData="M100,10 A90,90 0 1,1 99.9,10"/>
+        </vector>
+    </item>
+
+    <!-- 地球圖片 -->
+    <item
+        android:width="20dp"
+        android:height="20dp"
+        android:gravity="center">
+        <bitmap
+            android:src="@drawable/exchange"
+            android:gravity="fill" />
+    </item>
+</layer-list>

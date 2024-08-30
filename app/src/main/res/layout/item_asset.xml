@@ -9,35 +9,59 @@
         android:id="@+id/imageViewIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_usd" /> <!-- 默认图片，可替换 -->
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="8dp"> <!-- 添加paddingStart以与图标保持间距 -->
 
+        <!-- 显示货币符号 -->
+        <TextView
+            android:id="@+id/textViewCurrencyCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- 显示货币名称 -->
         <TextView
             android:id="@+id/textViewCurrencyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Currency Name"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textViewCurrencyCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Currency Code"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewAssetAmount"
+    <!-- 显示金额和USD值 -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.00"
-        android:textSize="16sp"
-        android:layout_gravity="center_vertical" />
+        android:orientation="vertical"
+        android:gravity="end"> <!-- 设置文本靠右显示 -->
+
+        <!-- 显示资产数量 -->
+        <TextView
+            android:id="@+id/textViewAssetAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="18sp"
+            android:layout_gravity="end" /> <!-- 确保数字靠右显示 -->
+
+        <!-- 显示资产对应的USD值 -->
+        <TextView
+            android:id="@+id/textViewUsdValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="≈$0.00"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_gravity="end" /> <!-- 确保USD值靠右显示 -->
+    </LinearLayout>
 </LinearLayout>

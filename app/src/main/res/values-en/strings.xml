@@ -1,0 +1,21 @@
+<!-- res/values-en/strings.xml -->
+<resources>
+    <string name="app_name">UnionCash</string>
+    <string name="home">Home</string>
+    <string name="card">Cards</string>
+    <string name="total_assets">Total assets</string>
+    <string name="account">Account</string>
+    <string name="transfer_in">Transfer In</string>
+    <string name="transfer_out">Transfer Out</string>
+    <string name="view_pin">View PIN</string>
+    <string name="lock_unlock">Lock/Unlock</string>
+    <string name="account_security">Account &amp; Security</string> <!-- 新增的字串 -->
+    <string name="identity_verification">Identity authentication</string> <!-- 新增的字串 -->
+    <string name="account_management">Account management</string> <!-- 新增的字串 -->
+    <string name="address_book">Address book</string> <!-- 新增的字串 -->
+    <string name="service_fees">Service fee</string> <!-- 新增的字串 -->
+    <string name="language_settings">Language setting</string>
+    <string name="help">Help</string>
+    <string name="about_gsg_wallet">About GSG Wallet</string>
+    <string name="logout">Log out</string>
+</resources>

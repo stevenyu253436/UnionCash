@@ -51,6 +51,13 @@ android {
 }
 
 dependencies {
+    // 添加 Retrofit 和相关依赖项
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // 添加 OkHttp 和相关依赖项
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -75,6 +82,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // 新增 ZXing 的依赖项
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.google.zxing:android-core:3.3.0")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")  // 使用双引号添加 ZXing 的依赖
+
     // 添加新的依赖项
     implementation(libs.google.material)
     implementation(libs.androidx.appcompat)
@@ -88,6 +100,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
+    // 添加 Logging Interceptor 和 Gson
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
+    implementation("com.google.code.gson:gson:2.8.8")
 
     configurations.all {
         resolutionStrategy {

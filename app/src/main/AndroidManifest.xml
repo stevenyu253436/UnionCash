@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnionCash"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -25,6 +26,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 声明 RechargeActivity -->
+        <activity
+            android:name=".RechargeActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <!-- 声明 WithdrawActivity -->
+        <activity
+            android:name=".WithdrawActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <!-- 声明 RechargeDetailActivity -->
+        <activity
+            android:name=".RechargeDetailActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <activity
+            android:name=".UsdtDepositActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <activity
+            android:name=".UsdtWithdrawActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <activity
+            android:name=".QrCodeScannerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 选择合适的主题 -->
+
     </application>
 
 </manifest>

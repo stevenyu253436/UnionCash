@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/accountFragment">
+
+    <!-- Account Fragment -->
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.unioncash.AccountFragment"
+        android:label="Account Fragment">
+        <!-- Action to navigate to AccountSecurityFragment -->
+        <action
+            android:id="@+id/action_accountFragment_to_accountSecurityFragment"
+            app:destination="@id/accountSecurityFragment" />
+    </fragment>
+
+    <!-- Account Security Fragment -->
+    <fragment
+        android:id="@+id/accountSecurityFragment"
+        android:name="com.example.unioncash.AccountSecurityFragment"
+        android:label="Account Security Fragment">
+        <!-- Action to navigate back to AccountFragment -->
+        <action
+            android:id="@+id/action_accountSecurityFragment_to_accountFragment"
+            app:popUpTo="@id/accountFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>

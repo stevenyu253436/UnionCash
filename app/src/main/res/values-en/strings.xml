@@ -18,4 +18,9 @@
     <string name="help">Help</string>
     <string name="about_gsg_wallet">About GSG Wallet</string>
     <string name="logout">Log out</string>
+
+    <!-- Titles for BottomNavigationView -->
+    <string name="title_home">Home</string> <!-- 新增首頁標題 -->
+    <string name="title_card">Cards</string> <!-- 新增卡片標題 -->
+    <string name="title_account">Account</string> <!-- 新增賬戶標題 -->
 </resources>

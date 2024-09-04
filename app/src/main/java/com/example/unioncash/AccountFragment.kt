@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.TextView
+import android.widget.Toast // Add this import
 import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,6 +15,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import java.util.Locale
+import com.example.unioncash.AccountSecurityFragment
+import androidx.fragment.app.FragmentManager // Add this import
+import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 
 class AccountFragment : Fragment() {
 
@@ -62,6 +67,13 @@ class AccountFragment : Fragment() {
         // 綁定語言設定的點擊事件
         languageSetting.setOnClickListener {
             showLanguageSelectionDialog()
+        }
+
+        // 使用 Intent 來啟動 AccountSecurityActivity
+        val accountSecurityLayout: View = view.findViewById(R.id.accountSecurityLayout)
+        accountSecurityLayout.setOnClickListener {
+            val intent = Intent(requireContext(), AccountSecurityActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -146,6 +158,10 @@ class AccountFragment : Fragment() {
     private fun updateUIWithNewContext(context: Context) {
         // 更新 Fragment 中的所有 TextView 文本
         Log.d("AccountFragment", "Updating UI with new context")
+
+        // 確保重新獲取視圖引用
+        val view = this.view ?: return
+
         val userNameTextView: TextView = view?.findViewById(R.id.tvUserName) ?: return
         val userInitialTextView: TextView = view?.findViewById(R.id.tvUserInitial) ?: return
         val accountTitleTextView: TextView = view?.findViewById(R.id.tvAccountTitle) ?: return
@@ -160,8 +176,6 @@ class AccountFragment : Fragment() {
         val logoutTextView: TextView = view?.findViewById(R.id.btnLogout) ?: return // 新增這行
 
         // 使用新上下文更新字符串资源
-//        userNameTextView.text = context.getString(R.string.user_name)
-//        userInitialTextView.text = context.getString(R.string.user_initial)
         accountTitleTextView.text = context.getString(R.string.account)
         accountSecurityTextView.text = context.getString(R.string.account_security) // 更新帳戶 & 安全的文本
         identityVerificationTextView.text = context.getString(R.string.identity_verification) // 更新身份認證的文本
@@ -173,8 +187,12 @@ class AccountFragment : Fragment() {
         aboutGSGWalletTextView.text = context.getString(R.string.about_gsg_wallet) // 更新關於GSG Wallet的文本
         logoutTextView.text = context.getString(R.string.logout) // 更新Logout的文本
 
-        // 如果有其他 UI 元素需要更新，也可以在这里更新
-        // 比如更新按钮文本，菜单项等
+        // 重新綁定導航的點擊事件
+        view.findViewById<View>(R.id.accountSecurityLayout)?.setOnClickListener {
+            if (findNavController().currentDestination?.id != R.id.accountSecurityFragment) {
+                findNavController().navigate(R.id.action_accountFragment_to_accountSecurityFragment)
+            }
+        }
     }
 
     private fun restartApp() {

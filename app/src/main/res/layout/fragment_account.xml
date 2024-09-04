@@ -87,11 +87,15 @@
 
         <!-- 帳戶 & 安全 -->
         <LinearLayout
+            android:id="@+id/accountSecurityLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:showDividers="none">
+            android:showDividers="none"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
         <TextView
                 android:id="@+id/tvAccountSecurity"
@@ -301,6 +305,16 @@
                 android:layout_marginEnd="8dp"/>
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Fragment 容器 -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <!-- 登出标签 -->
     <TextView

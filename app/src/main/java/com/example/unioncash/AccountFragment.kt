@@ -75,6 +75,13 @@ class AccountFragment : Fragment() {
             val intent = Intent(requireContext(), AccountSecurityActivity::class.java)
             startActivity(intent)
         }
+
+        // 使用 Intent 來啟動 IdentityVerificationActivity
+        val identityVerificationLayout: View = view.findViewById(R.id.identityVerificationLayout)
+        identityVerificationLayout.setOnClickListener {
+            val intent = Intent(requireContext(), IdentityVerificationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getInitials(name: String): String {
@@ -109,13 +116,21 @@ class AccountFragment : Fragment() {
     }
 
     private fun getSelectedLanguageIndex(): Int {
-        val currentLanguage = Locale.getDefault().language
-        Log.d("AccountFragment", "Current language: $currentLanguage")
-        return when (currentLanguage) {
-            "zh" -> 0 // 繁體中文
-            "en" -> 1 // English
-            else -> 0
+        // 從 SharedPreferences 中重新獲取語言設置，而不是依賴 Locale.getDefault()
+        val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val currentLanguage = sharedPreferences.getString("My_Lang", "繁體中文")
+
+        Log.d("AccountFragment", "getSelectedLanguageIndex: Current language from SharedPreferences: $currentLanguage")
+
+        // 判斷語言索引
+        val index = when (currentLanguage) {
+            "繁體中文" -> 0
+            "English" -> 1
+            else -> 0 // 預設為繁體中文
         }
+
+        Log.d("AccountFragment", "getSelectedLanguageIndex: Language index selected: $index")
+        return index
     }
 
     fun setAppLanguage(context: Context, language: String) {
@@ -186,13 +201,6 @@ class AccountFragment : Fragment() {
         helpTextView.text = context.getString(R.string.help) // 更新幫助的文本
         aboutGSGWalletTextView.text = context.getString(R.string.about_gsg_wallet) // 更新關於GSG Wallet的文本
         logoutTextView.text = context.getString(R.string.logout) // 更新Logout的文本
-
-        // 重新綁定導航的點擊事件
-        view.findViewById<View>(R.id.accountSecurityLayout)?.setOnClickListener {
-            if (findNavController().currentDestination?.id != R.id.accountSecurityFragment) {
-                findNavController().navigate(R.id.action_accountFragment_to_accountSecurityFragment)
-            }
-        }
     }
 
     private fun restartApp() {
@@ -201,5 +209,19 @@ class AccountFragment : Fragment() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         activity?.finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // 從 SharedPreferences 中重新獲取語言設置
+        val sharedPreferences = requireContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val preferredLanguage = sharedPreferences.getString("My_Lang", "繁體中文") // 預設繁體中文
+
+        // 打印語言設置以進行調試
+        Log.d("AccountFragment", "onResume: Preferred language retrieved: $preferredLanguage")
+
+        // 確保語言一致
+        setAppLanguage(requireContext(), preferredLanguage!!)
     }
 }

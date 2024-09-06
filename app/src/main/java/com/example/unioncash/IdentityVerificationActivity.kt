@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import java.util.Locale
 
-class AccountSecurityActivity : AppCompatActivity() {
+class IdentityVerificationActivity : AppCompatActivity() {
 
     private val languageChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -49,9 +49,9 @@ class AccountSecurityActivity : AppCompatActivity() {
 
     // 更新标题文本
     private fun updateTitleText() {
-        val tvAccountSecurityTitle: TextView = findViewById(R.id.tvAccountSecurityTitle)
-        tvAccountSecurityTitle.text = getString(R.string.account_security)
-        Log.d("AccountSecurityActivity", "Title updated to: ${tvAccountSecurityTitle.text}")
+        val tvIdentityVerificationTitle: TextView = findViewById(R.id.tvIdentityVerificationTitle)
+        tvIdentityVerificationTitle.text = getString(R.string.identity_verification)
+        Log.d("IdentityVerificationActivity", "Title updated to: ${tvIdentityVerificationTitle.text}")
     }
 
     // 处理返回按钮点击事件
@@ -66,7 +66,7 @@ class AccountSecurityActivity : AppCompatActivity() {
         val locale = getLocaleForLanguage(language)
         setLocale(locale)
         saveLanguageToPreferences(language)
-        Log.d("AccountSecurityActivity", "Applied language: $language, Locale: ${locale.language}_${locale.country}")
+        Log.d("IdentityVerificationActivity", "Applied language: $language, Locale: ${locale.language}_${locale.country}")
     }
 
     // 获取保存的语言设置
@@ -99,6 +99,6 @@ class AccountSecurityActivity : AppCompatActivity() {
             putString("My_Lang", language)
             apply()
         }
-        Log.d("AccountSecurityActivity", "Language saved to preferences: $language")
+        Log.d("IdentityVerificationActivity", "Language saved to preferences: $language")
     }
 }

@@ -12,7 +12,7 @@
         android:id="@+id/tvAccountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account"
+        android:text="@string/title_account"
         android:textSize="24sp"
         android:textColor="#7F4A9E"
         android:layout_marginTop="16dp"
@@ -97,7 +97,16 @@
             android:focusable="true"
             android:background="?android:attr/selectableItemBackground">
 
-        <TextView
+            <!-- Icon for 帳戶 & 安全 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_account_security"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/account_security" />
+
+            <!-- Text for 帳戶 & 安全 -->
+            <TextView
                 android:id="@+id/tvAccountSecurity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -106,29 +115,42 @@
                 android:textSize="16sp"
                 android:textColor="#000000" />
 
+            <!-- Arrow for 帳戶 & 安全 -->
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_right"
-            android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"/>
         </LinearLayout>
 
         <!-- 身份認證 -->
         <LinearLayout
+            android:id="@+id/identityVerificationLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:showDividers="none">
+            android:showDividers="none"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground">
 
-        <TextView
-                android:id="@+id/tvIdentityVerification"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/identity_verification"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+        <!-- Icon for 身份認證 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_identity_verification"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/identity_verification" />
+
+            <TextView
+                    android:id="@+id/tvIdentityVerification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/identity_verification"
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -145,14 +167,22 @@
             android:gravity="center_vertical"
             android:showDividers="none">
 
-        <TextView
-                android:id="@+id/tvAccountManagement"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/account_management"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+            <!-- Icon for 賬戶管理 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_account_management"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/account_management" />
+
+            <TextView
+                    android:id="@+id/tvAccountManagement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/account_management"
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -168,6 +198,14 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:showDividers="middle">
+
+            <!-- Icon for 地址簿 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_address_book"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/address_book" />
 
             <TextView
                 android:id="@+id/tvAddressBook"
@@ -193,6 +231,14 @@
             android:gravity="center_vertical"
             android:showDividers="middle">
 
+            <!-- Icon for 服務費用 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_service_fee"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/service_fees" />
+
             <TextView
                 android:id="@+id/tvServiceFee"
                 android:layout_width="0dp"
@@ -209,29 +255,6 @@
                 android:layout_marginEnd="8dp"/>
         </LinearLayout>
 
-        <!-- 邀請好友 -->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:showDividers="none">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="邀請好友"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textColor="#000000" />-->
-
-<!--            <ImageView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/ic_arrow_right"-->
-<!--            android:layout_marginEnd="8dp"/>-->
-<!--        </LinearLayout>-->
-
         <!-- 語言設定 -->
         <LinearLayout
             android:id="@+id/language_setting"
@@ -240,6 +263,14 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:showDividers="none">
+
+            <!-- Icon for 語言設定 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_language_settings"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/language_settings" />
 
             <TextView
                 android:id="@+id/tvLanguageSettings"
@@ -265,6 +296,14 @@
             android:gravity="center_vertical"
             android:showDividers="none">
 
+            <!-- Icon for 幫助 -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_help"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/help" />
+
             <TextView
                 android:id="@+id/tvHelp"
                 android:layout_width="0dp"
@@ -288,6 +327,14 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:showDividers="none">
+
+            <!-- Icon for 關於GSG Wallet -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_about_wallet"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/about_gsg_wallet" />
 
             <TextView
                 android:id="@+id/tvAboutGSGWallet"

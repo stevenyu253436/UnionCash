@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountSecurityActivity">
+    tools:context=".IdentityVerificationActivity">
+
+    <!-- Back arrow and Title -->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/ivArrowLeft"-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="24dp"-->
+    <!--        android:src="@drawable/ic_arrow_left"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/tvAccountSecurityTitle"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginBottom="16dp"/>-->
 
     <TextView
-        android:id="@+id/tvAccountSecurityTitle"
+        android:id="@+id/tvIdentityVerificationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account_security"
+        android:text="@string/identity_verification"
         android:textSize="24sp"
         android:textColor="#000000"
         android:layout_marginTop="16dp"
@@ -26,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvAccountSecurityTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvIdentityVerificationTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -110,66 +123,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_arrow_right"/>
-    </LinearLayout>
-
-    <!-- 支付密碼 -->
-    <LinearLayout
-        android:id="@+id/paymentSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/passwordSection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_payment"
-            android:layout_marginEnd="16dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/payment_password"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_right"/>
-    </LinearLayout>
-
-    <!-- 面容/指纹登录 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/paymentSection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_faceid"
-            android:layout_marginEnd="16dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/face_fingerprint_login"
-            android:textSize="16sp"
-            android:textColor="#000000"/>
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

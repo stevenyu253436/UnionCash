@@ -19,8 +19,21 @@
     <string name="about_gsg_wallet">About GSG Wallet</string>
     <string name="logout">Log out</string>
 
+    <!-- New strings for AccountSecurityActivity -->
+    <string name="modify_phone_number">Change phone number</string>
+    <string name="change_email">Change email</string>
+    <string name="login_password">Change login password</string>
+    <string name="payment_password">Change payment password</string>
+    <string name="face_fingerprint_login">FaceID/TouchID login</string>
+
     <!-- Titles for BottomNavigationView -->
     <string name="title_home">Home</string> <!-- 新增首頁標題 -->
     <string name="title_card">Cards</string> <!-- 新增卡片標題 -->
     <string name="title_account">Account</string> <!-- 新增賬戶標題 -->
+
+    <!-- Button labels for HomeFragment -->
+    <string name="recharge">Deposit</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="exchange">Exchange</string>
+    <string name="global_speed_transfer">Remittance</string>
 </resources>

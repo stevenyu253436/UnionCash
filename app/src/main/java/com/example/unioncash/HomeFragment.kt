@@ -21,6 +21,10 @@ import com.example.unioncash.network.ApiClient
 import com.example.unioncash.model.WalletResponse
 import com.example.unioncash.model.Data
 import com.example.unioncash.model.ResponseWallet
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
+import kotlin.math.pow
 
 class HomeFragment : Fragment() {
 
@@ -124,39 +128,60 @@ class HomeFragment : Fragment() {
         val tronAddress = "TT8i1yRfNqGL7uudFNgruUFJpqchJjXYZF"
         val requestBody = mapOf("address" to tronAddress)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = ApiClient.tronApi.getWallets(requestBody)
-            try {
-                val response = call.execute()
-                if (response.isSuccessful) {
-                    val walletResponse = response.body()
-                    val usdtBalance = walletResponse?.data?.responseWallets?.find { it.coinType == "USDT" }?.amount ?: 0.0
+        val etherscanApiKey = "H6WZH2NCZVQCQUNQJIKAH9TRFCINEKHNI5"
+        val erc20ContractAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7" // USDT Contract Address
+        val walletAddress = "0x1E7B10AaF9888a6b1FED08E72859351d465c5932"
+        val etherscanUrl = "https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=$erc20ContractAddress&address=$walletAddress&tag=latest&apikey=$etherscanApiKey"
 
-                    withContext(Dispatchers.Main) {
-                        Log.d("HomeFragment", "USDT Balance: $usdtBalance")
-                        updateAssetList(usdtBalance)
-                    }
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // 1. 查询 Tron 的 USDT 余额
+                val tronCall = ApiClient.tronApi.getWallets(requestBody)
+                val tronResponse = tronCall.execute()
+
+                var trc20Balance = 0.0
+                if (tronResponse.isSuccessful) {
+                    val walletResponse = tronResponse.body()
+                    trc20Balance = walletResponse?.data?.responseWallets?.find { it.coinType == "USDT" }?.amount ?: 0.0
                 } else {
-                    Log.e("HomeFragment", "Error: ${response.errorBody()?.string()}")
+                    Log.e("HomeFragment", "Tron API error: ${tronResponse.errorBody()?.string()}")
                 }
+
+                // 2. 查询 ERC-20 USDT 余额
+                val client = OkHttpClient()
+                val request = Request.Builder().url(etherscanUrl).build()
+
+                var erc20Balance = 0.0
+                val response = client.newCall(request).execute()
+                if (response.isSuccessful) {
+                    val responseData = response.body?.string()
+                    val jsonResponse = JSONObject(responseData)
+                    val balanceInWei = jsonResponse.getString("result").toBigInteger()
+
+                    // USDT has 6 decimals, so divide by 10^6 to get the actual balance
+                    erc20Balance = balanceInWei.toDouble() / 10.0.pow(6)
+                } else {
+                    Log.e("HomeFragment", "Etherscan API error: ${response.message}")
+                }
+
+                // 3. 调用 `updateAssetList` 更新 TRC20 和 ERC20 的资产信息
+                withContext(Dispatchers.Main) {
+                    updateAssetList(trc20Balance, erc20Balance)
+                }
+
             } catch (e: Exception) {
                 Log.e("HomeFragment", "Exception: ${e.message}")
             }
         }
     }
 
-    private suspend fun updateAssetList(trc20Balance: Double) {
+    private suspend fun updateAssetList(trc20Balance: Double, erc20Balance: Double) {
         withContext(Dispatchers.Main) {
             val updatedList = assetList.toMutableList()
 
-            // 假设 USDT 对 USD 的汇率为 1:1
+            // 更新 TRC20 资产
             val trc20UsdValue = String.format(Locale.US, "%.6f", trc20Balance)
             val formattedTrc20Balance = String.format(Locale.US, "%.2f", trc20Balance)
-
-            // 假设 ERC20 的余额为 0.00，因为没有API获取到数据
-            val erc20Balance = 0.00
-            val erc20UsdValue = String.format(Locale.US, "%.6f", erc20Balance)
-            val formattedErc20Balance = String.format(Locale.US, "%.2f", erc20Balance)
 
             val usdtTrc20Index = updatedList.indexOfFirst { it.symbol == "USDT-TRC20" }
             if (usdtTrc20Index != -1) {
@@ -170,10 +195,13 @@ class HomeFragment : Fragment() {
                 )
             }
 
-            // 更新 ERC20 的默认余额为 0.00
+            // 更新 ERC20 资产
+            val erc20UsdValue = String.format(Locale.US, "%.6f", erc20Balance)
+            val formattedErc20Balance = String.format(Locale.US, "%.2f", erc20Balance)
+
             val usdtErc20Index = updatedList.indexOfFirst { it.symbol == "USDT-ERC20" }
             if (usdtErc20Index != -1) {
-                Log.d("UpdateAssetList", "Updating USDT-ERC20 to $formattedErc20Balance")
+                Log.d("UpdateAssetList", "Updating USDT-ERC20 to $formattedErc20Balance with USD value $erc20UsdValue")
                 updatedList[usdtErc20Index] = Asset(
                     name = "Tether (ERC20)",
                     symbol = "USDT-ERC20",
@@ -187,9 +215,12 @@ class HomeFragment : Fragment() {
             assetsAdapter.setData(updatedList)
             Log.d("HomeFragment", "Updated assetList: $updatedList")
 
-            // 更新总资产 TextView
-            Log.d("UpdateAssetList", "Setting tvTotalAmount to: $formattedTrc20Balance USDT-TRC20")
-            tvTotalAmount.text = "$formattedTrc20Balance USDT"
+            // 计算 TRC20 和 ERC20 的总和
+            val totalUSDT = trc20Balance + erc20Balance
+            val formattedTotalUSDT = String.format(Locale.US, "%.2f", totalUSDT)
+
+            // 更新总资产 TextView，显示总 USDT 余额
+            tvTotalAmount.text = "$formattedTotalUSDT USDT"
             swipeRefreshLayout.isRefreshing = false
         }
     }

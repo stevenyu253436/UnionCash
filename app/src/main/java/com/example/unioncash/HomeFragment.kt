@@ -43,8 +43,9 @@ class HomeFragment : Fragment() {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount)
 
         assetList = mutableListOf(
-            Asset("US Dollars", "USD", "0.00", R.drawable.ic_usd, "0.00"), // 对应的USD值
-            Asset("Tether", "USDT", "0.000000", R.drawable.ic_usdt, "0.00"), // 对应的USD值
+            Asset("US Dollars", "USD", "0.00", R.drawable.ic_usd, "0.000000"), // 对应的USD值
+            Asset("Tether (TRC20)", "USDT-TRC20", "0.00", R.drawable.ic_usdt, "0.000000"), // USDT-TRC20
+            Asset("Tether (ERC20)", "USDT-ERC20", "0.00", R.drawable.ic_usdt, "0.000000") // USDT-ERC20，默认余额为 0
         )
 
         assetsAdapter = AssetsAdapter(assetList)
@@ -144,23 +145,41 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private suspend fun updateAssetList(balance: Double) {
+    private suspend fun updateAssetList(trc20Balance: Double) {
         withContext(Dispatchers.Main) {
             val updatedList = assetList.toMutableList()
 
             // 假设 USDT 对 USD 的汇率为 1:1
-            val usdValue = String.format(Locale.US, "%.2f", balance)
-            val formattedBalance = String.format(Locale.US, "%.2f", balance)
+            val trc20UsdValue = String.format(Locale.US, "%.6f", trc20Balance)
+            val formattedTrc20Balance = String.format(Locale.US, "%.2f", trc20Balance)
 
-            val usdtAssetIndex = updatedList.indexOfFirst { it.symbol == "USDT" }
-            if (usdtAssetIndex != -1) {
-                Log.d("UpdateAssetList", "Updating USDT to $formattedBalance with USD value $usdValue")
-                updatedList[usdtAssetIndex] = Asset(
-                    name = "Tether",
-                    symbol = "USDT",
-                    amount = formattedBalance,
+            // 假设 ERC20 的余额为 0.00，因为没有API获取到数据
+            val erc20Balance = 0.00
+            val erc20UsdValue = String.format(Locale.US, "%.6f", erc20Balance)
+            val formattedErc20Balance = String.format(Locale.US, "%.2f", erc20Balance)
+
+            val usdtTrc20Index = updatedList.indexOfFirst { it.symbol == "USDT-TRC20" }
+            if (usdtTrc20Index != -1) {
+                Log.d("UpdateAssetList", "Updating USDT to $formattedTrc20Balance with USD value $trc20UsdValue")
+                updatedList[usdtTrc20Index] = Asset(
+                    name = "Tether (TRC20)",
+                    symbol = "USDT-TRC20",
+                    amount = formattedTrc20Balance,
                     iconResId = R.drawable.ic_usdt,
-                    usdValue = usdValue
+                    usdValue = trc20UsdValue
+                )
+            }
+
+            // 更新 ERC20 的默认余额为 0.00
+            val usdtErc20Index = updatedList.indexOfFirst { it.symbol == "USDT-ERC20" }
+            if (usdtErc20Index != -1) {
+                Log.d("UpdateAssetList", "Updating USDT-ERC20 to $formattedErc20Balance")
+                updatedList[usdtErc20Index] = Asset(
+                    name = "Tether (ERC20)",
+                    symbol = "USDT-ERC20",
+                    amount = formattedErc20Balance,
+                    iconResId = R.drawable.ic_usdt,
+                    usdValue = erc20UsdValue
                 )
             }
 
@@ -169,8 +188,8 @@ class HomeFragment : Fragment() {
             Log.d("HomeFragment", "Updated assetList: $updatedList")
 
             // 更新总资产 TextView
-            Log.d("UpdateAssetList", "Setting tvTotalAmount to: $formattedBalance USDT")
-            tvTotalAmount.text = "$formattedBalance USDT"
+            Log.d("UpdateAssetList", "Setting tvTotalAmount to: $formattedTrc20Balance USDT-TRC20")
+            tvTotalAmount.text = "$formattedTrc20Balance USDT"
             swipeRefreshLayout.isRefreshing = false
         }
     }

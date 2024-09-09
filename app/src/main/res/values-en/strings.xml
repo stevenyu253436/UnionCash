@@ -26,6 +26,15 @@
     <string name="payment_password">Change payment password</string>
     <string name="face_fingerprint_login">FaceID/TouchID login</string>
 
+    <!-- New strings for IdentityVerificationActivity -->
+    <string name="personal_info">Personal information</string>
+    <string name="passport">Passport</string>
+    <string name="face_recognition">Face identification</string>
+
+    <!-- Status labels -->
+    <string name="status_in_review">Reviewing</string> <!-- 新增審核中 -->
+    <string name="status_pending_completion">Incomplete</string> <!-- 新增待完善 -->
+
     <!-- Titles for BottomNavigationView -->
     <string name="title_home">Home</string> <!-- 新增首頁標題 -->
     <string name="title_card">Cards</string> <!-- 新增卡片標題 -->
@@ -36,4 +45,18 @@
     <string name="withdraw">Withdraw</string>
     <string name="exchange">Exchange</string>
     <string name="global_speed_transfer">Remittance</string>
+
+    <!-- Strings for ServiceFeeActivity -->
+    <string name="buy_usdt">購買USDT</string>
+    <string name="buy_usdt_fee">1.00%</string>
+    <string name="sell_usdt">出售USDT</string>
+    <string name="sell_usdt_fee">1.00% (最低 5.00 USDT)</string>
+    <string name="withdraw_to_iban">提現到IBAN</string>
+    <string name="withdraw_to_iban_fee">€5.00/筆</string>
+    <string name="usdt_in">USDT轉入</string>
+    <string name="usdt_in_fee">免費</string>
+    <string name="usdt_out">USDT轉出 (ETH/ERC20)</string>
+    <string name="usdt_out_fee">60.00 USDT/筆</string>
+    <string name="internal_transfer">GSG Wallet行內轉賬</string>
+    <string name="internal_transfer_fee">1.00 USDT/筆</string>
 </resources>

@@ -15,7 +15,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import java.util.Locale
-import com.example.unioncash.AccountSecurityFragment
 import androidx.fragment.app.FragmentManager // Add this import
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
@@ -82,6 +81,44 @@ class AccountFragment : Fragment() {
             val intent = Intent(requireContext(), IdentityVerificationActivity::class.java)
             startActivity(intent)
         }
+
+        val accountManagementLayout: View = view.findViewById(R.id.accountManagementLayout)
+        accountManagementLayout.setOnClickListener {
+            showAccountManagementDialog()
+        }
+
+        // 使用 Intent 來啟動 ServiceFeeLayout
+        val serviceFeeLayout: View = view.findViewById(R.id.serviceFeeLayout)
+        serviceFeeLayout.setOnClickListener {
+            val intent = Intent(requireContext(), ServiceFeeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 使用 Intent 來啟動 AboutGSGWalletActivity
+        val aboutGSGWalletLayout: View = view.findViewById(R.id.aboutGSGWalletLayout)
+        aboutGSGWalletLayout.setOnClickListener {
+            val intent = Intent(requireContext(), AboutGSGWalletActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun showAccountManagementDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("您還沒有完善基本訊息，請先完善基本資訊。")
+            .setCancelable(false) // 防止點擊外部關閉對話框
+            .setPositiveButton("確認") { dialog, id ->
+                // 當用戶點擊確認按鈕後，導向身分驗證畫面
+                val intent = Intent(requireContext(), IdentityVerificationActivity::class.java)
+                startActivity(intent)
+                dialog.dismiss() // 關閉對話框
+            }
+            .setNegativeButton("取消") { dialog, id ->
+                // 當用戶點擊取消按鈕後的操作
+                dialog.dismiss() // 關閉對話框
+            }
+
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun getInitials(name: String): String {

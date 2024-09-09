@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <!-- 標題 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="關於"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:paddingBottom="16dp"/>
+
+    <!-- 圖標 -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_gsg_wallet_logo" />
+
+    <!-- 版本號 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="版本號碼 1.40"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:paddingBottom="16dp"/>
+
+    <!-- 服務協定 -->
+<!--    <TextView-->
+<!--        android:id="@+id/tvServiceAgreement"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="服務協定"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:drawableStart="@drawable/ic_service_agreement"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:gravity="center_vertical"/>-->
+
+    <TextView
+        android:id="@+id/tvServiceAgreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="服務協定"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:paddingTop="16dp"
+        android:gravity="center_vertical"/>
+</LinearLayout>

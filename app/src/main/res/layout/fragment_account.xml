@@ -152,6 +152,16 @@
                     android:textSize="16sp"
                     android:textColor="#000000" />
 
+            <!-- "待完善" 標籤 -->
+            <TextView
+                android:id="@+id/tvPendingCompletion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_pending_completion"
+                android:textSize="14sp"
+                android:textColor="#FFA500"
+                android:layout_marginEnd="8dp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,6 +171,7 @@
 
         <!-- 賬戶管理 -->
         <LinearLayout
+            android:id="@+id/accountManagementLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -225,6 +236,7 @@
 
         <!-- 服務費用 -->
         <LinearLayout
+            android:id="@+id/serviceFeeLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -322,6 +334,7 @@
 
         <!-- 關於GSG Wallet -->
         <LinearLayout
+            android:id="@+id/aboutGSGWalletLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

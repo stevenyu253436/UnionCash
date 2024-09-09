@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".IdentityVerificationActivity">
 
-    <!-- Back arrow and Title -->
-    <!--    <ImageView-->
-    <!--        android:id="@+id/ivArrowLeft"-->
-    <!--        android:layout_width="24dp"-->
-    <!--        android:layout_height="24dp"-->
-    <!--        android:src="@drawable/ic_arrow_left"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/tvAccountSecurityTitle"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:layout_marginBottom="16dp"/>-->
-
     <TextView
         android:id="@+id/tvIdentityVerificationTitle"
         android:layout_width="wrap_content"
@@ -32,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
-    <!-- 修改手機號碼 -->
+    <!-- 個人資訊 -->
     <LinearLayout
         android:id="@+id/phoneSection"
         android:layout_width="match_parent"
@@ -46,16 +33,25 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_phone"
+            android:src="@drawable/ic_personal_info"
             android:layout_marginEnd="16dp"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/modify_phone_number"
+            android:text="@string/personal_info"
             android:textSize="16sp"
             android:textColor="#000000"/>
+
+        <!-- 審核中標籤 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_in_review"
+            android:textSize="14sp"
+            android:textColor="#ADD8E6"
+            android:layout_marginEnd="8dp"/>
 
         <ImageView
             android:layout_width="24dp"
@@ -63,7 +59,7 @@
             android:src="@drawable/ic_arrow_right"/>
     </LinearLayout>
 
-    <!-- 變更信箱 -->
+    <!-- 護照 -->
     <LinearLayout
         android:id="@+id/emailSection"
         android:layout_width="match_parent"
@@ -77,16 +73,25 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_email"
+            android:src="@drawable/ic_passport"
             android:layout_marginEnd="16dp"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/change_email"
+            android:text="@string/passport"
             android:textSize="16sp"
             android:textColor="#000000"/>
+
+        <!-- 待完善標籤 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_pending_completion"
+            android:textSize="14sp"
+            android:textColor="#FFA500"
+            android:layout_marginEnd="8dp"/>
 
         <ImageView
             android:layout_width="24dp"
@@ -94,7 +99,7 @@
             android:src="@drawable/ic_arrow_right"/>
     </LinearLayout>
 
-    <!-- 登入密碼 -->
+    <!-- 人臉辨識 -->
     <LinearLayout
         android:id="@+id/passwordSection"
         android:layout_width="match_parent"
@@ -108,16 +113,25 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_password"
+            android:src="@drawable/ic_face_recognition"
             android:layout_marginEnd="16dp"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login_password"
+            android:text="@string/face_recognition"
             android:textSize="16sp"
             android:textColor="#000000"/>
+
+        <!-- 審核中標籤 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_in_review"
+            android:textSize="14sp"
+            android:textColor="#ADD8E6"
+            android:layout_marginEnd="8dp"/>
 
         <ImageView
             android:layout_width="24dp"

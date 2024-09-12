@@ -47,9 +47,9 @@ class HomeFragment : Fragment() {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount)
 
         assetList = mutableListOf(
-            Asset("US Dollars", "USD", "0.00", R.drawable.ic_usd, "0.000000"), // 对应的USD值
-            Asset("Tether (TRC20)", "USDT-TRC20", "0.00", R.drawable.ic_usdt, "0.000000"), // USDT-TRC20
-            Asset("Tether (ERC20)", "USDT-ERC20", "0.00", R.drawable.ic_usdt, "0.000000") // USDT-ERC20，默认余额为 0
+            Asset("US Dollars", "USD", "0.000000", R.drawable.ic_usd, "0.00"), // 对应的USD值
+            Asset("Tether (TRC20)", "USDT-TRC20", "0.000000", R.drawable.ic_usdt, "0.00"), // USDT-TRC20
+            Asset("Tether (ERC20)", "USDT-ERC20", "0.000000", R.drawable.ic_usdt, "0.00") // USDT-ERC20，默认余额为 0
         )
 
         assetsAdapter = AssetsAdapter(assetList)
@@ -125,8 +125,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun refreshAssets() {
-        val tronAddress = "TT8i1yRfNqGL7uudFNgruUFJpqchJjXYZF"
+        val tronAddress = "TAMGw3VQMj9RUDQXAMPYVE7TqrckpqHrrS"
         val requestBody = mapOf("address" to tronAddress)
+
+        // 假設這裡獲取到 authToken
+        val authToken = "ZXlKaGJHY2lPaUpCTWpVMlEwSkRMVWhUTlRFeUlpd2lkSGx3SWpvaVNsZFVJbjAuZXlKMWMyVnlJam9pZEdWemRIVnpaWElpTENKMWJtbHhkV1ZmYm1GdFpTSTZJblJsYzNSdVlXMWxJaXdpYm1KbUlqb3hOekkyTVRBMk1qVTFMQ0psZUhBaU9qRTNNall4TURZek1UVXNJbWxoZENJNk1UY3lOakV3TmpJMU5Td2lhWE56SWpvaVIyVjBWRzlyWlc0aWZRLk9vWFRyOFY4d2xaN2VldGlrM2VFVlhvbElvNUtkbnhyZFBrTURueXRnVEtDTmRCWnk1bXRKYk5jd0ZvX25nRmUwUXhWc0Z1MlI5ZzdoSXB6dWxja1NB"
 
         val etherscanApiKey = "H6WZH2NCZVQCQUNQJIKAH9TRFCINEKHNI5"
         val erc20ContractAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7" // USDT Contract Address
@@ -135,8 +138,12 @@ class HomeFragment : Fragment() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
+                // 使用帶有 AuthToken 的 Retrofit 實例
+                val retrofit = ApiClient.getRetrofitInstance(authToken)
+                val tronApi = retrofit.create(TronApi::class.java)
+
                 // 1. 查询 Tron 的 USDT 余额
-                val tronCall = ApiClient.tronApi.getWallets(requestBody)
+                val tronCall = tronApi.getWallets(requestBody)
                 val tronResponse = tronCall.execute()
 
                 var trc20Balance = 0.0
@@ -180,8 +187,8 @@ class HomeFragment : Fragment() {
             val updatedList = assetList.toMutableList()
 
             // 更新 TRC20 资产
-            val trc20UsdValue = String.format(Locale.US, "%.6f", trc20Balance)
-            val formattedTrc20Balance = String.format(Locale.US, "%.2f", trc20Balance)
+            val trc20UsdValue = String.format(Locale.US, "%.2f", trc20Balance)
+            val formattedTrc20Balance = String.format(Locale.US, "%.6f", trc20Balance)
 
             val usdtTrc20Index = updatedList.indexOfFirst { it.symbol == "USDT-TRC20" }
             if (usdtTrc20Index != -1) {
@@ -196,8 +203,8 @@ class HomeFragment : Fragment() {
             }
 
             // 更新 ERC20 资产
-            val erc20UsdValue = String.format(Locale.US, "%.6f", erc20Balance)
-            val formattedErc20Balance = String.format(Locale.US, "%.2f", erc20Balance)
+            val erc20UsdValue = String.format(Locale.US, "%.2f", erc20Balance)
+            val formattedErc20Balance = String.format(Locale.US, "%.6f", erc20Balance)
 
             val usdtErc20Index = updatedList.indexOfFirst { it.symbol == "USDT-ERC20" }
             if (usdtErc20Index != -1) {

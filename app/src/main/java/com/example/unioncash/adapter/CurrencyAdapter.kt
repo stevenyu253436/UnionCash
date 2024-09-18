@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unioncash.R
 import com.example.unioncash.RechargeDetailActivity
 import com.example.unioncash.UsdtDepositActivity
-import com.example.unioncash.UsdtWithdrawActivity // 导入 UsdtWithdrawActivity
+import com.example.unioncash.UsdtWithdrawActivity
+import com.example.unioncash.UsdtExchangeActivity // 導入 UsdtExchangeActivity
 import com.example.unioncash.model.Currency
 
 class CurrencyAdapter(
     private val currencies: List<Currency>,
-    private val isWithdrawal: Boolean // 添加 isWithdrawal 标志
+    private val isWithdrawal: Boolean, // 添加 isWithdrawal 标志
+    private val isExchange: Boolean // 添加 isExchange 标志
 ) : RecyclerView.Adapter<CurrencyAdapter.CurrencyViewHolder>() {
 
     inner class CurrencyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,6 +41,11 @@ class CurrencyAdapter(
                         // 如果是 USDT 且是提现操作，启动 UsdtWithdrawActivity
                         Log.d("CurrencyAdapter", "Navigating to UsdtWithdrawActivity")
                         Intent(context, UsdtWithdrawActivity::class.java)
+                    }
+                    currency.symbol == "USDT" && isExchange -> {
+                        // 如果是 USDT 且是兌換操作，啟動 UsdtExchangeActivity
+                        Log.d("CurrencyAdapter", "Navigating to UsdtExchangeActivity")
+                        Intent(context, UsdtExchangeActivity::class.java)
                     }
                     currency.symbol == "USDT" -> {
                         // 如果是 USDT 且是充值操作，启动 UsdtDepositActivity

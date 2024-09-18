@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 添加 CAMERA 权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 声明相机硬件为可选 -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
     <!-- 添加 INTERNET 权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -39,6 +45,12 @@
             android:theme="@style/WhiteBackgroundTheme"
             android:exported="true" />
 
+        <!-- 声明 ExchangeActivity -->
+        <activity
+            android:name=".ExchangeActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
         <!-- 声明 RechargeDetailActivity -->
         <activity
             android:name=".RechargeDetailActivity"
@@ -52,6 +64,11 @@
 
         <activity
             android:name=".UsdtWithdrawActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
+        <activity
+            android:name=".UsdtExchangeActivity"
             android:theme="@style/WhiteBackgroundTheme"
             android:exported="true" />
 

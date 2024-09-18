@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".WithdrawActivity">
 
-    <!-- RecyclerView 來顯示幣種清單 -->
+<!-- RecyclerView 來顯示幣種清單 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCurrencies"
         android:layout_width="0dp"
@@ -19,5 +19,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

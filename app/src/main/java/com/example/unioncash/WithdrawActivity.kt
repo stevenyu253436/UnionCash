@@ -30,11 +30,9 @@ class WithdrawActivity : AppCompatActivity() {
         currencyList = listOf(
             Currency("US Dollars", "USD", R.drawable.ic_usd),
             Currency("Tether", "USDT", R.drawable.ic_usdt),
-            Currency("Bitcoin", "BTC", R.drawable.ic_btc),
-            Currency("Ethereum", "ETH", R.drawable.ic_eth)
         )
 
-        currencyAdapter = CurrencyAdapter(currencyList, isWithdrawal = true)
+        currencyAdapter = CurrencyAdapter(currencyList, isWithdrawal = true, isExchange = false)
         recyclerView.adapter = currencyAdapter
     }
 

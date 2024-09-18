@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Button
@@ -28,6 +29,9 @@ class UsdtDepositActivity : AppCompatActivity() {
 
     private val REQUEST_WRITE_STORAGE = 112
 
+    private val erc20Address = "0x1E7B10AaF9888a6b1FED08E72859351d465c5932"
+    private val trc20Address = "TAMGw3VQMj9RUDQXAMPYVE7TqrckpqHrrS"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_usdt_deposit)
@@ -41,6 +45,12 @@ class UsdtDepositActivity : AppCompatActivity() {
         val rgChainName = findViewById<RadioGroup>(R.id.rgChainName)
         val rbErc20 = findViewById<RadioButton>(R.id.rbErc20)
         val rbTrc20 = findViewById<RadioButton>(R.id.rbTrc20)
+        val qrCodeImageView: ImageView = findViewById(R.id.ivQrCode)
+        val addressTextView: TextView = findViewById(R.id.tvAddress)
+        val saveQrCodeButton: Button = findViewById(R.id.btnSaveQrCode)
+
+        // 初始化時顯示 ERC20 地址和 QR 碼
+        updateQrCodeAndAddress(erc20Address, qrCodeImageView, addressTextView)
 
         // 设置 RadioGroup 的选中状态改变监听器
         rgChainName.setOnCheckedChangeListener { group, checkedId ->
@@ -48,25 +58,15 @@ class UsdtDepositActivity : AppCompatActivity() {
                 R.id.rbErc20 -> {
                     rbErc20.setBackgroundResource(R.drawable.bg_selected_chain)
                     rbTrc20.setBackgroundResource(R.drawable.bg_unselected_chain)
+                    updateQrCodeAndAddress(erc20Address, qrCodeImageView, addressTextView)
                 }
                 R.id.rbTrc20 -> {
                     rbErc20.setBackgroundResource(R.drawable.bg_unselected_chain)
                     rbTrc20.setBackgroundResource(R.drawable.bg_selected_chain)
+                    updateQrCodeAndAddress(trc20Address, qrCodeImageView, addressTextView)
                 }
             }
         }
-
-        val qrCodeImageView: ImageView = findViewById(R.id.ivQrCode)
-        val addressTextView: TextView = findViewById(R.id.tvAddress)
-        val saveQrCodeButton: Button = findViewById(R.id.btnSaveQrCode)
-
-        // 设置 USDT 地址
-        val address = "TT8i1yRfNqGL7uudFNgruUFJpqchJjXYZF"
-        addressTextView.text = address
-
-        // 生成带图标的二维码
-        val qrCodeBitmap = generateQRCodeWithLogo(address, R.drawable.ic_usdt)
-        qrCodeImageView.setImageBitmap(qrCodeBitmap)
 
         // 请求写入存储权限
         val hasWriteStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -74,11 +74,22 @@ class UsdtDepositActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_WRITE_STORAGE)
         }
 
-        // 保存二维码图片的操作
+        // 保存二維碼圖片的操作
         saveQrCodeButton.setOnClickListener {
-            // 这里实现保存二维码的逻辑
-            Toast.makeText(this, "二維碼圖片保存成功", Toast.LENGTH_SHORT).show()
+            val qrCodeBitmap = (qrCodeImageView.drawable as? BitmapDrawable)?.bitmap
+            if (qrCodeBitmap != null && saveQRCodeImage(qrCodeBitmap)) {
+                Toast.makeText(this, "二維碼圖片保存成功", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "保存失敗", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    // 更新 QR 碼和地址
+    private fun updateQrCodeAndAddress(address: String, qrCodeImageView: ImageView, addressTextView: TextView) {
+        addressTextView.text = address
+        val qrCodeBitmap = generateQRCodeWithLogo(address, R.drawable.ic_usdt)
+        qrCodeImageView.setImageBitmap(qrCodeBitmap)
     }
 
     private fun generateQRCodeWithLogo(text: String, logoResId: Int): Bitmap? {

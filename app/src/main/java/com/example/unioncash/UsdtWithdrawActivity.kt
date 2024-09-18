@@ -17,13 +17,17 @@ class UsdtWithdrawActivity : AppCompatActivity() {
 
     private val SCAN_REQUEST_CODE = 1001
 
+    // 定義 ERC20 和 TRC20 餘額
+    private val erc20Balance = 21.8
+    private val trc20Balance = 35.6
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_usdt_withdraw)
 
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = "提现"
+            title = "提現"
         }
 
         // 获取布局中的视图
@@ -81,6 +85,20 @@ class UsdtWithdrawActivity : AppCompatActivity() {
             } else {
                 // 处理提现逻辑
                 Toast.makeText(this, "提現成功", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == SCAN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val scanResult = data?.getStringExtra("SCAN_RESULT")
+            val withdrawAddressEditText = findViewById<EditText>(R.id.etWithdrawAddress)
+
+            // 將掃描到的地址設置到 withdrawAddressEditText
+            if (!scanResult.isNullOrEmpty()) {
+                withdrawAddressEditText.setText(scanResult)
             }
         }
     }

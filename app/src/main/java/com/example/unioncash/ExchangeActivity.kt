@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.unioncash.adapter.CurrencyAdapter
 import com.example.unioncash.model.Currency
 
-class RechargeActivity : AppCompatActivity() {
+class ExchangeActivity : AppCompatActivity() {
 
     // 定義 recyclerView 和 currencyAdapter 變量
     private lateinit var recyclerView: RecyclerView
@@ -33,7 +33,7 @@ class RechargeActivity : AppCompatActivity() {
         )
 
         // 创建 CurrencyAdapter 时传递 isWithdrawal 参数，表示这是充值操作
-        currencyAdapter = CurrencyAdapter(currencyList, isWithdrawal = false, isExchange = false)
+        currencyAdapter = CurrencyAdapter(currencyList, isWithdrawal = false, isExchange = true)
         recyclerView.adapter = currencyAdapter
     }
 

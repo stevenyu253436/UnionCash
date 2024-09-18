@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsdtExchangeActivity">
+
+    <!-- 付款帳戶標籤 -->
+    <TextView
+        android:id="@+id/tvPaymentAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="付款帳戶"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- 付款帳戶下拉選擇器 -->
+    <Spinner
+        android:id="@+id/spinnerPaymentAccount"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPaymentAccount"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- 貨幣兌換區塊 -->
+    <LinearLayout
+        android:id="@+id/currencyExchangeLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/spinnerPaymentAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp">
+
+        <!-- 付款貨幣 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvPayCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay       "
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_gravity="center_vertical" />
+
+            <!-- 付款貨幣的圖標和文字 -->
+            <ImageView
+                android:id="@+id/ivPayCurrencyIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_usd"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvPaySymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+        <!-- 交換圖標 -->
+        <ImageView
+            android:id="@+id/ivSwapIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_switch"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/llPayCurrency"
+            app:layout_constraintStart_toEndOf="@id/llPayCurrency"
+            app:layout_constraintEnd_toStartOf="@+id/llReceiveCurrency"
+            android:layout_gravity="center" />
+
+        <!-- 接收貨幣 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvReceiveCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Receive"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_gravity="center_vertical" />
+
+            <!-- 接收貨幣的圖標和文字 -->
+            <ImageView
+                android:id="@+id/ivReceiveCurrencyIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_usdt"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvReceiveSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USDT"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 兌換數量的標題 -->
+    <TextView
+        android:id="@+id/tvExchangeAmountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="兌換數量"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/currencyExchangeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clExchangeAmountContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edittext"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExchangeAmountTitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <!-- 輸入金額 -->
+        <EditText
+            android:id="@+id/etExchangeAmount"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint="輸入金額"
+            android:background="@android:color/transparent"
+            android:inputType="numberDecimal"
+            android:paddingStart="0dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvAll"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 全部按鈕 -->
+        <TextView
+            android:id="@+id/tvAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部"
+            android:textSize="16sp"
+            android:textColor="@color/purple_700"
+            app:layout_constraintStart_toEndOf="@id/etExchangeAmount"
+            app:layout_constraintEnd_toStartOf="@id/ivUsdtIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="0dp" />
+
+        <!-- USDT 圖標 -->
+        <ImageView
+            android:id="@+id/ivUsdtIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_usdt"
+            app:layout_constraintStart_toEndOf="@id/tvAll"
+            app:layout_constraintEnd_toEndOf="@id/tvUsdtLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- USDT 文字 -->
+        <TextView
+            android:id="@+id/tvUsdtLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USDT"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@id/ivUsdtIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 可兌換的 USDT 數量 -->
+    <TextView
+        android:id="@+id/tvExchangeableAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="可兌換數量: 0.000000 USDT"
+        app:layout_constraintTop_toBottomOf="@id/clExchangeAmountContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- 確認按鈕 -->
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="確認"
+        android:backgroundTint="#7F4A9E"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

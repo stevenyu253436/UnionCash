@@ -90,6 +90,11 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), WithdrawActivity::class.java)
             startActivity(intent)
         }
+
+        exchangeButton.setOnClickListener {
+            val intent = Intent(requireContext(), ExchangeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

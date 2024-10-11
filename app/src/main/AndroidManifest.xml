@@ -5,11 +5,17 @@
     <!-- 添加 CAMERA 权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- 声明相机硬件为可选 -->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <!-- 添加 生物识别权限 -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <!-- 添加 INTERNET 权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 声明相机硬件为可选 -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <!-- 声明面容/指纹硬件为可选 -->
+    <uses-feature android:name="android.hardware.fingerprint" android:required="false" />
 
     <application
         android:allowBackup="true"

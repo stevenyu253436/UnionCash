@@ -112,6 +112,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
 
+    // BiometricPrompt 依赖
+    implementation("androidx.biometric:biometric:1.1.0")
+
     // 添加 Logging Interceptor 和 Gson
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
     implementation("com.google.code.gson:gson:2.8.8")

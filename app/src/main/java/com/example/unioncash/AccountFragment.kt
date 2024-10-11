@@ -70,9 +70,20 @@ class AccountFragment : Fragment() {
 
         // 使用 Intent 來啟動 AccountSecurityActivity
         val accountSecurityLayout: View = view.findViewById(R.id.accountSecurityLayout)
-        accountSecurityLayout.setOnClickListener {
-            val intent = Intent(requireContext(), AccountSecurityActivity::class.java)
-            startActivity(intent)
+        if (accountSecurityLayout == null) {
+            Log.e("AccountFragment", "accountSecurityLayout is null, please check the layout file.")
+        } else {
+            accountSecurityLayout.setOnClickListener {
+                try {
+                    Log.d("AccountFragment", "Attempting to launch AccountSecurityActivity")
+                    val intent = Intent(requireContext(), AccountSecurityActivity::class.java)
+                    Log.d("AccountFragment", "Intent created")
+                    startActivity(intent)
+                    Log.d("AccountFragment", "startActivity called")
+                } catch (e: Exception) {
+                    Log.e("AccountFragment", "Error launching AccountSecurityActivity: ${e.message}")
+                }
+            }
         }
 
         // 使用 Intent 來啟動 IdentityVerificationActivity

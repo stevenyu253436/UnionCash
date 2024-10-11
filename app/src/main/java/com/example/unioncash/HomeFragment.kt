@@ -142,47 +142,60 @@ class HomeFragment : Fragment() {
         val etherscanUrl = "https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=$erc20ContractAddress&address=$walletAddress&tag=latest&apikey=$etherscanApiKey"
 
         CoroutineScope(Dispatchers.IO).launch {
-            try {
-                // 使用帶有 AuthToken 的 Retrofit 實例
-                val retrofit = ApiClient.getRetrofitInstance(authToken)
-                val tronApi = retrofit.create(TronApi::class.java)
+            var trc20Balance = 0.0
+            var erc20Balance = 0.0
 
-                // 1. 查询 Tron 的 USDT 余额
-                val tronCall = tronApi.getWallets(requestBody)
-                val tronResponse = tronCall.execute()
+            // 同時查詢TRC20 和 ERC20 的餘額
+            val trc20Job = launch {
+                try {
+                    // 使用帶有 AuthToken 的 Retrofit 實例
+                    val retrofit = ApiClient.getRetrofitInstance(authToken)
+                    val tronApi = retrofit.create(TronApi::class.java)
 
-                var trc20Balance = 0.0
-                if (tronResponse.isSuccessful) {
-                    val walletResponse = tronResponse.body()
-                    trc20Balance = walletResponse?.data?.responseWallets?.find { it.coinType == "USDT" }?.amount ?: 0.0
-                } else {
-                    Log.e("HomeFragment", "Tron API error: ${tronResponse.errorBody()?.string()}")
+                    // 1. 查询 Tron 的 USDT 余额
+                    val tronCall = tronApi.getWallets(requestBody)
+                    val tronResponse = tronCall.execute()
+
+                    if (tronResponse.isSuccessful) {
+                        val walletResponse = tronResponse.body()
+                        trc20Balance = walletResponse?.data?.responseWallets?.find { it.coinType == "USDT" }?.amount ?: 0.0
+                    } else {
+                        Log.e("HomeFragment", "Tron API error: ${tronResponse.errorBody()?.string()}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("HomeFragment", "Exception in TRC20: ${e.message}")
                 }
+            }
 
-                // 2. 查询 ERC-20 USDT 余额
-                val client = OkHttpClient()
-                val request = Request.Builder().url(etherscanUrl).build()
+            val erc20Job = launch {
+                try {
+                    // 2. 查询 ERC-20 USDT 余额
+                    val client = OkHttpClient()
+                    val request = Request.Builder().url(etherscanUrl).build()
 
-                var erc20Balance = 0.0
-                val response = client.newCall(request).execute()
-                if (response.isSuccessful) {
-                    val responseData = response.body?.string()
-                    val jsonResponse = JSONObject(responseData)
-                    val balanceInWei = jsonResponse.getString("result").toBigInteger()
+                    val response = client.newCall(request).execute()
+                    if (response.isSuccessful) {
+                        val responseData = response.body?.string()
+                        val jsonResponse = JSONObject(responseData)
+                        val balanceInWei = jsonResponse.getString("result").toBigInteger()
 
-                    // USDT has 6 decimals, so divide by 10^6 to get the actual balance
-                    erc20Balance = balanceInWei.toDouble() / 10.0.pow(6)
-                } else {
-                    Log.e("HomeFragment", "Etherscan API error: ${response.message}")
+                        // USDT has 6 decimals, so divide by 10^6 to get the actual balance
+                        erc20Balance = balanceInWei.toDouble() / 10.0.pow(6)
+                    } else {
+                        Log.e("HomeFragment", "Etherscan API error: ${response.message}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("HomeFragment", "Exception in ERC20: ${e.message}")
                 }
+            }
 
-                // 3. 调用 `updateAssetList` 更新 TRC20 和 ERC20 的资产信息
-                withContext(Dispatchers.Main) {
-                    updateAssetList(trc20Balance, erc20Balance)
-                }
+            // 等待兩個協程完成
+            trc20Job.join()
+            erc20Job.join()
 
-            } catch (e: Exception) {
-                Log.e("HomeFragment", "Exception: ${e.message}")
+            // 3. 调用 `updateAssetList` 更新 TRC20 和 ERC20 的资产信息
+            withContext(Dispatchers.Main) {
+                updateAssetList(trc20Balance, erc20Balance)
             }
         }
     }

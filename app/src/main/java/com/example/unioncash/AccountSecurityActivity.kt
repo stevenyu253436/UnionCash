@@ -26,12 +26,12 @@ class AccountSecurityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyLanguageSetting() // 直接应用语言设置
-        setContentView(R.layout.activity_identity_verification)
+        setContentView(R.layout.activity_account_security)
 
         // 启用返回按钮
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // 更新标题
+        // 更新标题activity_identity_verification
         updateTitleText()
 
         // 注册语言变更广播接收器

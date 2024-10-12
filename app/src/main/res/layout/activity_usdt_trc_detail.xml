@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".USDTERCDetailActivity">
+    tools:context=".USDTTRCDetailActivity">
 
     <!-- Back Button -->
     <ImageView
@@ -17,13 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- USDT Title -->
+    <!-- USDT-TRC20 Title -->
     <TextView
         android:id="@+id/tvUsdtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="USDT-ERC20"
+        android:text="USDT-TRC20"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

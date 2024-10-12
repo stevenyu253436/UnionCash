@@ -32,7 +32,7 @@ class USDTERCDetailActivity : AppCompatActivity() {
 
         // Assume 1 USDT = 1 EUR for now
         val equivalent = balance // Sample conversion rate
-        usdtEquivalent.text = String.format("≈€%.2f", equivalent)
+        usdtEquivalent.text = String.format("≈＄%.2f", equivalent)
 
         // Set back button behavior
         findViewById<ImageView>(R.id.backButton).setOnClickListener {

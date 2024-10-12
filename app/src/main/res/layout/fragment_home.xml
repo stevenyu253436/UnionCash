@@ -88,17 +88,6 @@
             android:gravity="center"
             android:padding="8dp"
             android:background="@android:color/transparent" />
-
-        <Button
-            android:id="@+id/btnGlobalSpeed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/global_speed_transfer"
-            android:drawableTop="@drawable/ic_global"
-            android:gravity="center"
-            android:padding="8dp"
-            android:background="@android:color/transparent" />
     </LinearLayout>
 
     <!-- 下拉刷新布局 -->

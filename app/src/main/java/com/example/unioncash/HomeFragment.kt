@@ -76,7 +76,6 @@ class HomeFragment : Fragment() {
         val rechargeButton: Button = view.findViewById(R.id.btnRecharge)
         val withdrawButton: Button = view.findViewById(R.id.btnWithdraw)
         val exchangeButton: Button = view.findViewById(R.id.btnExchange)
-        val globalSpeedButton: Button = view.findViewById(R.id.btnGlobalSpeed)
 
         // 设置点击事件监听器
         rechargeButton.setOnClickListener {
@@ -114,12 +113,10 @@ class HomeFragment : Fragment() {
         val rechargeButton: Button = view?.findViewById(R.id.btnRecharge) ?: return
         val withdrawButton: Button = view?.findViewById(R.id.btnWithdraw) ?: return
         val exchangeButton: Button = view?.findViewById(R.id.btnExchange) ?: return
-        val globalSpeedButton: Button = view?.findViewById(R.id.btnGlobalSpeed) ?: return
 
         rechargeButton.text = getString(R.string.recharge)
         withdrawButton.text = getString(R.string.withdraw)
         exchangeButton.text = getString(R.string.exchange)
-        globalSpeedButton.text = getString(R.string.global_speed_transfer)
 
         // 其他需要更新的视图文本
         val homeLabel: TextView = view?.findViewById(R.id.tvHomeLabel) ?: return

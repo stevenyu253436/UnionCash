@@ -59,4 +59,7 @@
     <string name="usdt_out_fee">60.00 USDT/筆</string>
     <string name="internal_transfer">GSG Wallet行內轉賬</string>
     <string name="internal_transfer_fee">1.00 USDT/筆</string>
+
+    <!-- New string for History -->
+    <string name="history">History</string>
 </resources>

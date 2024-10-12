@@ -102,6 +102,11 @@
             android:theme="@style/WhiteBackgroundTheme"
             android:exported="true" />
 
+        <activity
+            android:name=".USDTERCDetailActivity"
+            android:theme="@style/WhiteBackgroundTheme"
+            android:exported="true" />
+
     </application>
 
 </manifest>

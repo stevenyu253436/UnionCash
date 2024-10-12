@@ -234,6 +234,13 @@ class HomeFragment : Fragment() {
                     iconResId = R.drawable.ic_usdt,
                     usdValue = erc20UsdValue
                 )
+
+                // Handle click event for USDT-ERC20
+                recyclerView.findViewHolderForAdapterPosition(usdtErc20Index)?.itemView?.setOnClickListener {
+                    val intent = Intent(requireContext(), USDTERCDetailActivity::class.java)
+                    intent.putExtra("balance", erc20Balance) // Pass balance to detail screen
+                    startActivity(intent)
+                }
             }
 
             // 使用 setData 方法更新数据并刷新 RecyclerView

@@ -35,7 +35,7 @@ class UsdtExchangeActivity : AppCompatActivity() {
         }
 
         // 模擬數據：付款帳戶選擇器選項
-        val accountOptions = arrayOf("EUR賬戶", "USD賬戶")
+        val accountOptions = arrayOf("USD賬戶")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, accountOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerPaymentAccount.adapter = adapter

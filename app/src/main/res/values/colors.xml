@@ -12,4 +12,7 @@
     <color name="black">#000000</color>
     <color name="colorIconDefault">#808080</color> <!-- Default icon color -->
     <color name="colorIconSelected">#FFFFFF</color> <!-- Selected icon color -->
+
+    <!-- Added gray color -->
+    <color name="gray">#808080</color> <!-- Light gray color -->
 </resources>
